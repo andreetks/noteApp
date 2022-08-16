@@ -16,26 +16,26 @@ def getRoutes(request):
             'description': 'Returns an array of notes'
         },
         {
+            'Endpoint': '/notes/',
+            'method': 'POST',
+            'body': {'title': '', 'content': ''},
+            'description': 'Creates new note with data sent in post request'
+        },
+        {
             'Endpoint': '/notes/id',
             'method': 'GET',
             'body': None,
             'description': 'Returns a single note object'
         },
         {
-            'Endpoint': '/notes/create/',
-            'method': 'POST',
-            'body': {'body': ""},
-            'description': 'Creates new note with data sent in post request'
-        },
-        {
-            'Endpoint': '/notes/id/update/',
+            'Endpoint': '/notes/id/',
             'method': 'PUT',
-            'body': {'body': ""},
+            'body': {'title': '', 'content': ''},
             'description': 'Creates an existing note with data sent in' +
             'post request'
         },
         {
-            'Endpoint': '/notes/id/delete/',
+            'Endpoint': '/notes/id/',
             'method': 'DELETE',
             'body': None,
             'description': 'Deletes and exiting note'
@@ -61,7 +61,7 @@ def getNotes(request):
             lastId = 0
         note = Note.objects.create(
             id=lastId + 1,
-            title=f'Note {lastId + 1}',
+            title=data['title'],
             content=data['content']
         )
         serializer = NoteSerializer(note, many=False)
