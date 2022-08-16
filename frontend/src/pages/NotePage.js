@@ -11,9 +11,11 @@ const NotePage = () => {
     const [title, setTitle] = useState('')
     const [note, setNote] = useState({})
 
+
     useEffect(() => {
+        
         getNotes()
-       
+        // eslint-disable-next-line
     }, [])
 
     const getNotes = () => {
@@ -41,23 +43,23 @@ const NotePage = () => {
     }
 
     const updateNote = () => {
-        const noteUpdated = { ...note, title: title , content: text }
+        const noteUpdated = { ...note, title: title, content: text }
         axios.put(`/api/notes/${noteId}/`, noteUpdated)
 
     }
 
     const createNote = () => {
-        const content = {title: title, content : text}
+        const content = { title: title, content: text }
         axios.post('/api/notes/', content)
     }
 
-    const handleSubmit = () =>{
-        if ( noteId !== 'new' && !text){
+    const handleSubmit = () => {
+        if (noteId !== 'new' && !text) {
             deleteNote()
-        } else if( noteId !== 'new' && (note.content !== text || note.title !== title)) {
+        } else if (noteId !== 'new' && (note.content !== text || note.title !== title)) {
             console.log('updating')
             updateNote()
-        }else if ( noteId === 'new' && text && title){
+        } else if (noteId === 'new' && text && title) {
             createNote()
         }
     }
@@ -66,7 +68,7 @@ const NotePage = () => {
         <div className='note'>
             <div className='note-header'>
                 <Link onClick={handleSubmit} to='/'>
-                    <h3><ArrowLeft  /></h3>
+                    <h3><ArrowLeft /></h3>
                 </Link>
 
                 {noteId !== 'new' ? (
@@ -74,7 +76,7 @@ const NotePage = () => {
                         <h1>Delete</h1>
                     </Link>
                 ) : (
-                    <Link onClick={handleSubmit} to='/'> 
+                    <Link onClick={handleSubmit} to='/'>
                         done
                     </Link>
                 )}
@@ -82,7 +84,7 @@ const NotePage = () => {
 
 
             </div>
-            <input onChange={manageTitleChange} defaultValue={ title } type='text' placeholder='Title' />
+            <input onChange={manageTitleChange} defaultValue={title} type='text' placeholder='Title' />
             <textarea onChange={manageNoteChange} value={text} placeholder='Content'></textarea>
         </div>
     )
