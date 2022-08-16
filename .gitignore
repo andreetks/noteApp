@@ -96,3 +96,6 @@ chrome-user-data
 *.swp
 *.swo
 
+frontend/build
+frontend/node_modules
+frontend/package-lock.json
