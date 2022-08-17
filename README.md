@@ -34,4 +34,8 @@ And last but not least, Run the server
 ```
 python manage.py runserver
 ```
+# Preview
+|  Main  | Note | New-Note
+|:------:|:------:|:------:|
+![](https://i.postimg.cc/k5LmkyNc/main-mb.png)|![](https://i.postimg.cc/5NXmtq8v/note-view-mb.png)|![](https://i.postimg.cc/mDMcPjTX/new-view-mb.png)|
 
