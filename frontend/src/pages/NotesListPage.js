@@ -6,7 +6,7 @@ import AddButton from '../components/AddButton'
 
 const NotesListPage = () => {
 
-  const [notes, setNotes] = useState([])
+  const [notes, setNotes] = useState([{}, {}])
 
   useEffect(()=>{
     
@@ -15,7 +15,7 @@ const NotesListPage = () => {
   },[])
 
   const getData = () => {
-    axios.get('https://gand-note-api.herokuapp.com/api/notes/')
+    axios.get('api/notes/')
     .then(response => setNotes(response.data))
     .catch(e => console.log(e))
   }

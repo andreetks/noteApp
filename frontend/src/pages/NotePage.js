@@ -20,12 +20,13 @@ const NotePage = () => {
 
     const getNotes = () => {
         if (noteId === 'new') return
-        axios.get(`https://gand-note-api.herokuapp.com/api/notes/${noteId}`)
+        axios.get(`api/notes/${noteId}`)
             .then(response => {
                 setNote(response.data)
                 setText(response.data.content)
                 setTitle(response.data.title)
             })
+            .catch(e => console.log('error',e))
 
     }
 
@@ -39,25 +40,24 @@ const NotePage = () => {
 
     const deleteNote = () => {
         console.log(`deleting ${noteId}...`)
-        axios.delete(`https://gand-note-api.herokuapp.com/api/notes/${noteId}/`)
+        axios.delete(`api/notes/${noteId}/`)
     }
 
     const updateNote = () => {
         const noteUpdated = { ...note, title: title, content: text }
-        axios.put(`https://gand-note-api.herokuapp.com/api/notes/${noteId}/`, noteUpdated)
+        axios.put(`api/notes/${noteId}/`, noteUpdated)
 
     }
 
     const createNote = () => {
         const content = { title: title, content: text }
-        axios.post('https://gand-note-api.herokuapp.com/api/notes/', content)
+        axios.post('api/notes/', content)
     }
 
     const handleSubmit = () => {
         if (noteId !== 'new' && !text) {
             deleteNote()
         } else if (noteId !== 'new' && (note.content !== text || note.title !== title)) {
-            console.log('updating')
             updateNote()
         } else if (noteId === 'new' && text && title) {
             createNote()
