@@ -136,7 +136,7 @@ STATIC_ROOT = Path.joinpath(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'frontend/build/static'
+    BASE_DIR / 'staticfiles'
 ]
 
 # Default primary key field type
